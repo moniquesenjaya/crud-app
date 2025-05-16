@@ -27,6 +27,26 @@ pipeline {
             }
         }
 
+        stage('Test') {
+            steps {
+                bat 'npm run test:ci'
+            }
+            post {
+                always {
+                    junit 'reports/junit/js-test-results.xml'
+                    publishHTML([
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true,
+                        reportDir: 'coverage/lcov-report',
+                        reportFiles: 'index.html',
+                        reportName: 'Code Coverage'
+                    ])
+                }
+            }
+        }
+
+
     }
 
     post {
