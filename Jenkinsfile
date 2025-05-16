@@ -31,7 +31,8 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'dist/**', fingerprint: true
+            bat 'dir build /s' // DEBUG: list contents of build folder
+            archiveArtifacts artifacts: 'build/**', fingerprint: true
         }
         success {
             echo "Build succeeded!"
