@@ -30,21 +30,10 @@ pipeline {
         stage('Test') {
             steps {
                 bat 'npm run test:ci'
-            }
-            post {
-                always {
-                    junit 'reports/junit/js-test-results.xml'
-                    publishHTML([
-                        allowMissing: false,
-                        alwaysLinkToLastBuild: true,
-                        keepAll: true,
-                        reportDir: 'coverage/lcov-report',
-                        reportFiles: 'index.html',
-                        reportName: 'Code Coverage'
-                    ])
-                }
+                junit 'reports/test/junit.xml'
             }
         }
+
 
 
     }
@@ -53,6 +42,7 @@ pipeline {
         always {
             bat 'dir build /s' // DEBUG: list contents of build folder
             archiveArtifacts artifacts: 'build/**', fingerprint: true
+            archiveArtifacts artifacts: 'coverage/**', fingerprint: true
         }
         success {
             echo "Build succeeded!"
