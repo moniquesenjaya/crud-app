@@ -28,4 +28,16 @@ pipeline {
         }
 
     }
+
+    posts {
+        always {
+            archiveArtifacts artifacts: 'dist/**', fingerprint: true
+        }
+        success {
+            echo "Build succeeded!"
+        }
+        failure {
+            echo "Build failed!"
+        }
+    }
 }
