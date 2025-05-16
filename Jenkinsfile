@@ -31,7 +31,7 @@ pipeline {
             steps {
                 bat 'npm run test:ci'
                 bat 'dir reports /s'
-                junit 'reports/test/junit.xml'
+                junit 'reports/junit/js-test-results.xml'
             }
         }
 
