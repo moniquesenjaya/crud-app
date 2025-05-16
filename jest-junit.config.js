@@ -1,4 +1,4 @@
 module.exports = {
-  outputDirectory: './reports/test',
+  outputDirectory: 'reports/test',
   outputName: 'junit.xml',
 };

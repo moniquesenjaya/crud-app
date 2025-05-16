@@ -30,6 +30,7 @@ pipeline {
         stage('Test') {
             steps {
                 bat 'npm run test:ci'
+                bat 'dir reports /s'
                 junit 'reports/test/junit.xml'
             }
         }
@@ -40,7 +41,6 @@ pipeline {
 
     post {
         always {
-            bat 'dir build /s' // DEBUG: list contents of build folder
             archiveArtifacts artifacts: 'build/**', fingerprint: true
             archiveArtifacts artifacts: 'coverage/**', fingerprint: true
         }

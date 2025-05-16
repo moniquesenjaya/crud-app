@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="3" failures="0" errors="0" time="4.839">
+  <testsuite name="Dashboard Component" errors="0" failures="0" skipped="0" timestamp="2025-05-16T11:52:15" time="2.156" tests="2">
+    <testcase classname="Dashboard Component renders Header and Table when not adding or editing" name="Dashboard Component renders Header and Table when not adding or editing" time="0.018">
+    </testcase>
+    <testcase classname="Dashboard Component displays employee data from localStorage if available" name="Dashboard Component displays employee data from localStorage if available" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2025-05-16T11:52:15" time="2.4" tests="1">
+    <testcase classname=" renders without crashing" name=" renders without crashing" time="0.022">
+    </testcase>
+  </testsuite>
+</testsuites>

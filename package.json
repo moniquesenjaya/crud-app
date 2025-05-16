@@ -30,8 +30,13 @@
     "outputName": "js-test-results.xml"
   },
   "jest": {
-  "coverageReporters": ["json", "lcov", "text", "clover"]
-},
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text",
+      "clover"
+    ]
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
