@@ -4,7 +4,7 @@ pipeline {
     tools {
         nodejs 'Node24'
         // Use the correct SonarScanner type from Jenkins
-        hudson.plugins.sonar.SonarRunnerInstallation 'SonarScanner'
+        sonarRunner 'SonarScanner'
     }
 
     environment {
@@ -41,7 +41,7 @@ pipeline {
         stage('Code Quality Analysis') {
             steps {
                 withSonarQubeEnv('SonarCloud') {
-                bat "sonar-scanner"
+                    bat 'sonar-scanner'
                 }
             }
         }
