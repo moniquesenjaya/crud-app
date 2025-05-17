@@ -38,7 +38,7 @@ pipeline {
 
         stage('Code Quality Analysis') {
             steps {
-                withSonarQubeEnv('SonarQube Cloud') {
+                withSonarQubeEnv('SonarCloud') {
                     bat 'sonar-scanner'
                 }
             }
