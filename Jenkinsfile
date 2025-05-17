@@ -7,6 +7,7 @@ pipeline {
 
     environment {
         BUILD_VERSION = "${env.BUILD_NUMBER}"
+        SONAR_TOKEN = credentials('SONAR_TOKEN')
     }
 
     triggers {
@@ -34,6 +35,15 @@ pipeline {
                 junit 'reports/junit/js-test-results.xml'
             }
         }
+
+        stage('Code Quality Analysis') {
+            steps {
+                withSonarQubeEnv('SonarCloud') {
+                    bat "sonar-scanner"
+                }
+            }
+        }
+
 
 
 
