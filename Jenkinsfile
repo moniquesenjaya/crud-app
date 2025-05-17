@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'Node24'  // ✅ Only valid tool types here
+        nodejs 'Node24'
     }
 
     environment {
@@ -43,12 +43,26 @@ pipeline {
                 }
             }
         }
+
+        stage('Security Analysis') {
+            environment {
+                SNYK_TOKEN = credentials('SNYK_TOKEN')
+            }
+            steps {
+                bat 'npm install -g snyk'
+                bat 'snyk auth %SNYK_TOKEN%'
+                bat 'snyk test --json > snyk-report.json'
+                bat 'type snyk-report.json'
+            }
+        }
+
     }
 
     post {
         always {
             archiveArtifacts artifacts: 'build/**', fingerprint: true
             archiveArtifacts artifacts: 'coverage/**', fingerprint: true
+            archiveArtifacts artifacts: 'snyk-report.json', fingerprint: true
         }
         success {
             echo "Build succeeded!"
