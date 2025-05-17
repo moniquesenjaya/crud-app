@@ -7,7 +7,7 @@ pipeline {
 
     environment {
         BUILD_VERSION = "${env.BUILD_NUMBER}"
-        SONAR_TOKEN = credentials('SONAR_TOKEN') // This is optional if your SonarCloud is already configured with the token
+        SONAR_TOKEN = credentials('SONAR_TOKEN')
     }
 
     triggers {
