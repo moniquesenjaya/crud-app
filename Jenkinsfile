@@ -39,8 +39,7 @@ pipeline {
         stage('Code Quality Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube Cloud') {
-                    def scannerHome = tool 'SonarScanner'
-                    bat "\"${scannerHome}\\bin\\sonar-scanner.bat\""
+                    bat 'sonar-scanner'
                 }
             }
         }
