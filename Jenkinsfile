@@ -3,7 +3,8 @@ pipeline {
 
     tools {
         nodejs 'Node24'
-        sonarQubeScanner 'SonarScanner' // name from Global Tool Configuration
+        // Use the correct SonarScanner type from Jenkins
+        hudson.plugins.sonar.SonarRunnerInstallation 'SonarScanner'
     }
 
     environment {
