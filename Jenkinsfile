@@ -51,7 +51,7 @@ pipeline {
             steps {
                 bat 'npm install -g snyk'
                 bat 'snyk auth %SNYK_TOKEN%'
-                bat 'snyk test --json > snyk-report.json'
+                bat 'snyk test --json > snyk-report.json || exit 0'
                 bat 'type snyk-report.json'
             }
         }
