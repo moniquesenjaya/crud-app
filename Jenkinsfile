@@ -3,6 +3,7 @@ pipeline {
 
     tools {
         nodejs 'Node24'
+        sonarQubeScanner 'SonarScanner' // name from Global Tool Configuration
     }
 
     environment {
@@ -39,7 +40,7 @@ pipeline {
         stage('Code Quality Analysis') {
             steps {
                 withSonarQubeEnv('SonarCloud') {
-                    bat "sonar-scanner"
+                bat "sonar-scanner"
                 }
             }
         }
