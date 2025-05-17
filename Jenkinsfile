@@ -2,18 +2,16 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'Node24'
-        // Use the correct SonarScanner type from Jenkins
-        sonarRunner 'SonarScanner'
+        nodejs 'Node24'  // ✅ Only valid tool types here
     }
 
     environment {
         BUILD_VERSION = "${env.BUILD_NUMBER}"
-        SONAR_TOKEN = credentials('SONAR_TOKEN')
+        SONAR_TOKEN = credentials('SONAR_TOKEN') // This is optional if your SonarCloud is already configured with the token
     }
 
     triggers {
-        pollSCM('H/5 * * * *') //five minutes
+        pollSCM('H/5 * * * *')
     }
 
     options {
@@ -45,10 +43,6 @@ pipeline {
                 }
             }
         }
-
-
-
-
     }
 
     post {
