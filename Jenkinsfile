@@ -70,6 +70,23 @@ pipeline {
             }
         }
 
+        stage('Release') {
+            steps {
+                echo 'Promoting to Production...'
+
+                // Clean up old production container
+                bat 'docker stop crud-app-prod-container || exit 0'
+                bat 'docker rm crud-app-prod-container || exit 0'
+                bat 'docker rmi crud-app-prod || exit 0'
+
+                // Tag image for production
+                bat 'docker tag crud-app crud-app-prod'
+
+                // Run new production container on port 4000
+                bat 'docker run -d -p 4000:80 --name crud-app-prod-container crud-app-prod'
+            }
+}
+
     }
 
     post {
