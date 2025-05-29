@@ -56,6 +56,20 @@ pipeline {
             }
         }
 
+        stage('Deploy') {
+            steps {
+                echo 'Building Docker image...'
+                bat 'docker build -t crud-app .'
+
+                echo 'Stopping existing container if running...'
+                bat 'docker stop crud-app-container || exit 0'
+                bat 'docker rm crud-app-container || exit 0'
+
+                echo 'Running new container on port 3000...'
+                bat 'docker run -d -p 3000:80 --name crud-app-container crud-app'
+            }
+        }
+
     }
 
     post {
